@@ -14,12 +14,24 @@ import Session from './Session';
 import AddFriend from './AddFriend'
 
 export default class App extends Component {
-  state = {
-    viewId:0,
+  constructor(props) {
+    super(props);
+
+    this.setView = this.setView.bind(this);
+
+    this.state = {
+      viewId:0
+    }
   }
 
-  setView = (viewIdFromChild) => {
-    console.log(viewId);
+  setViewNewsfeed() {
+    console.log(newsfeed);
+    this.setState({
+      viewId:2,
+    });
+  }
+  setView(viewIdFromChild) {
+    //console.log({this.props.viewId});
     this.setState({viewId:viewIdFromChild});
   }
 
@@ -28,7 +40,7 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <Newsfeed />
-          <ActionBar onPress={this.setView} currentViewId={this.state.viewId}/>
+          <ActionBar action={this.setView.bind(this)}/>
         </View>
       );
     }
@@ -36,7 +48,7 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <Session />
-          <ActionBar onPress={() => setView(this.state.viewId)}/>
+          <ActionBar action={this.setView.bind(this)}/>
         </View>
       );
     }
@@ -44,7 +56,7 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <AddFriend />
-          <ActionBar />
+          <ActionBar action={this.setView.bind(this)} />
         </View>
       );
     }
@@ -52,7 +64,7 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <History />
-          <ActionBar />
+          <ActionBar action={this.setView.bind(this)} />
         </View>
       );
     }
