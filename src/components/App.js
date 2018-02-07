@@ -5,6 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 import ActionBar from './ActionBar';
@@ -39,6 +40,13 @@ export default class App extends Component {
     if (this.state.viewId == 0) {
       return(
         <View style={styles.container}>
+          <TouchableHighlight
+            activeOpacity={1}
+            style={styles.button}
+            underlayColor = {'#444'}
+          >
+            <Text>Hello</Text>
+          </TouchableHighlight>
           <Newsfeed />
           <ActionBar action={this.setView.bind(this)}/>
         </View>

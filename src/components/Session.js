@@ -5,7 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableHighlight
 } from 'react-native';
 
 import { Icon } from 'react-native-elements';
@@ -19,11 +19,13 @@ export default class Session extends Component {
 
   }
   _onHideUnderlay(){
+    console.log("HI");
     this.setState({
       isPressed:true
     })
   }
   _onShowUnderlay(){
+    console.log("Your Mom")
     this.setState({
       isPressed:false
     })
@@ -33,10 +35,9 @@ export default class Session extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <Text>Sessions</Text>
-          <TouchableOpacity
+          <TouchableHighlight
             activeOpacity={1}
-            style={[styles.button]}
+            style={styles.button}
             underlayColor = {'#444'}
             onHideUnderlay={this._onHideUnderlay.bind(this,0)}
             onShowUnderlay={this._onShowUnderlay.bind(this,0)}
@@ -46,14 +47,14 @@ export default class Session extends Component {
                 name='ios-add'
                 type='ionicon'
                 color='#00aced'
-                style={styles.buttonText}
+                style={styles.newIcon}
               />
-              <Text style={[styles.buttonText, this.state.isPressed ? styles.buttonTextPress : {}]}>Newsfeed</Text>
+              <Text style={[styles.buttonText, this.state.isPressed ? styles.buttonTextPress : {}]}>New Session</Text>
             </View>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text>Sessions</Text>
+          </TouchableHighlight>
+          <View style={[styles.shittyLogo]}>
+            <Text style={[styles.buttonText]}>Sessions</Text>
+          </View>
         </View>
       </View>
     );
@@ -63,22 +64,30 @@ export default class Session extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin:10,
   },
   topBar:{
-    flexDirection:'row'
+    flexDirection:'row-reverse',
+    height:50
+    // flex:1,
   },
   button:{
     flex:1,
-    //flexDirection:'row'
+    height:10,
+    alignItems:'flex-end',
   },
   addNew:{
     flexDirection:'row',
-    //justifyContent:'center',
-    alignItems:'center'
+    backgroundColor:'#ddd',
+  },
+  shittyLogo:{
+    height:10,
+
   },
   buttonText:{
-    flex:1,
     color:'#444',
-    fontSize:10
+    fontSize:13,
+    paddingBottom:2,
+    paddingLeft:3,
   }
 });
