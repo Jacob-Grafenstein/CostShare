@@ -5,57 +5,56 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } from 'react-native';
 
 import { Icon } from 'react-native-elements';
+
+import TopBar from './TopBar';
 
 export default class Session extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isPressed:false
+      newSession:false,
+      text:""
     }
+  }
 
-  }
-  _onHideUnderlay(){
-    console.log("HI");
+  newSession(){
     this.setState({
-      isPressed:true
-    })
-  }
-  _onShowUnderlay(){
-    console.log("Your Mom")
-    this.setState({
-      isPressed:false
-    })
+      newSession:!this.state.isPressed
+    });
+    console.log(this.state.newSession);
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.topBar}>
-          <TouchableHighlight
-            activeOpacity={1}
-            style={styles.button}
-            underlayColor = {'#444'}
-            onHideUnderlay={this._onHideUnderlay.bind(this,0)}
-            onShowUnderlay={this._onShowUnderlay.bind(this,0)}
-          >
-            <View style={styles.addNew}>
-              <Icon
-                name='ios-add'
-                type='ionicon'
-                color='#00aced'
-                style={styles.newIcon}
-              />
-              <Text style={[styles.buttonText, this.state.isPressed ? styles.buttonTextPress : {}]}>New Session</Text>
-            </View>
-          </TouchableHighlight>
-          <View style={[styles.shittyLogo]}>
-            <Text style={[styles.buttonText]}>Sessions</Text>
+    if (this.state.newSession) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.mainViewport}>
+            <Text style={styles.inputHeader}>Enter Session Title</Text>
+            <TextInput
+              multiline = {false}
+              onChangeText={(text) => this.setState({text})}
+              placeholder={"Add a session title..."}
+              editable = {true}
+              maxLength = {40}
+              value = {this.state.text}
+              style = {styles.textInput}
+            />
+          </View>
+          <View style={styles.addUsers}>
+            <Text style={styles.inputHeader}>Add Users</Text>
+
           </View>
         </View>
+      )
+    }
+    return (
+      <View style={styles.container}>
+        <TopBar action={this.newSession.bind(this)} />
       </View>
     );
   }
@@ -64,30 +63,55 @@ export default class Session extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin:10,
+    paddingTop:25
   },
   topBar:{
     flexDirection:'row-reverse',
-    height:50
-    // flex:1,
+    height:50,
+    backgroundColor:'#00aced'
+  },
+  iconPress:{
+
   },
   button:{
     flex:1,
-    height:10,
+    width:'25%',
     alignItems:'flex-end',
+    justifyContent:'center'
   },
   addNew:{
     flexDirection:'row',
-    backgroundColor:'#ddd',
+    //backgroundColor:'#ddd',
   },
   shittyLogo:{
-    height:10,
-
+    width:'25%'
+  },
+  centerPiece:{
+    width:'50%',
   },
   buttonText:{
     color:'#444',
     fontSize:13,
-    paddingBottom:2,
-    paddingLeft:3,
+    //textAlign:'center',
+    //paddingBottom:2,
+    //paddingLeft:3,
+  },
+  buttonTextPress:{
+    color:'#fff'
+  },
+  inputHeader:{
+    fontSize:13
+  },
+  textInput:{
+    // flex:1,
+    borderColor:'#ddd',
+    borderRadius:5,
+    borderWidth:1,
+    padding:1,
+    height:20
+  },
+  mainViewport:{
+    paddingLeft:10,
+    paddingRight:10
   }
 });

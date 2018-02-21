@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import ActionBar from './ActionBar';
-import Newsfeed from './Newsfeed';
+import Profile from './Profile';
 import History from './History';
 import Session from './Session';
 import AddFriend from './AddFriend'
@@ -40,15 +40,11 @@ export default class App extends Component {
     if (this.state.viewId == 0) {
       return(
         <View style={styles.container}>
-          <TouchableHighlight
-            activeOpacity={1}
-            style={styles.button}
-            underlayColor = {'#444'}
-          >
-            <Text>Hello</Text>
-          </TouchableHighlight>
-          <Newsfeed />
-          <ActionBar action={this.setView.bind(this)}/>
+          <Profile />
+          <ActionBar
+            action={this.setView.bind(this)}
+            activeView={this.state.viewId}
+          />
         </View>
       );
     }
@@ -56,7 +52,10 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <Session />
-          <ActionBar action={this.setView.bind(this)}/>
+          <ActionBar
+            action={this.setView.bind(this)}
+            activeView={this.state.viewId}
+          />
         </View>
       );
     }
@@ -64,7 +63,10 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <AddFriend />
-          <ActionBar action={this.setView.bind(this)} />
+          <ActionBar
+            action={this.setView.bind(this)}
+            activeView={this.state.viewId}
+          />
         </View>
       );
     }
@@ -72,7 +74,10 @@ export default class App extends Component {
       return(
         <View style={styles.container}>
           <History />
-          <ActionBar action={this.setView.bind(this)} />
+          <ActionBar
+            action={this.setView.bind(this)}
+            activeView={this.state.viewId}
+          />
         </View>
       );
     }
@@ -82,6 +87,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:25
   },
 });

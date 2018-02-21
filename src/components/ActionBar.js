@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import {
   View,
@@ -20,7 +18,8 @@ export default class ActionBar extends Component {
       pressZeroStatus:false,
       pressOneStatus:false,
       pressTwoStatus:false,
-      pressThreeStatus:false
+      pressThreeStatus:false,
+      active:1
     };
     // this.action = this.props.action;
   }
@@ -75,68 +74,68 @@ export default class ActionBar extends Component {
             activeOpacity={1}
             onPress={this.props.action.bind(this,0)}
             style={[styles.button]}
-            underlayColor = {'#444'}
+            underlayColor = {'#ddd'}
             onHideUnderlay={this._onHideUnderlay.bind(this,0)}
             onShowUnderlay={this._onShowUnderlay.bind(this,0)}
           >
             <View>
               <Icon
-                name='ios-home-outline'
+                name={this.props.activeView == 0 ? 'ios-contact' : 'ios-contact-outline'}
                 type='ionicon'
-                color='#00aced'
+                color={this.props.activeView == 0 ? '#00aced' : '#000'}
               />
-              <Text style={[styles.buttonText, this.state.pressZeroStatus ? styles.buttonTextPress : {}]}>Newsfeed</Text>
+            <Text style={[styles.buttonText, this.props.activeView == 0 ? {color:'#00aced'} : {color:'#000'}]}>Profile</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
             activeOpacity={1}
             style={[styles.button]}
-            underlayColor = {'#444'}
+            underlayColor = {'#ddd'}
             onPress={this.props.action.bind(this,1)}
             onHideUnderlay={this._onHideUnderlay.bind(this,1)}
             onShowUnderlay={this._onShowUnderlay.bind(this,1)}
           >
             <View>
               <Icon
-                name='ios-add-circle-outline'
+                name={this.props.activeView == 1 ? 'ios-cash' : 'ios-cash-outline'}
                 type='ionicon'
-                color='#00aced'
+                color={this.props.activeView == 1 ? '#00aced' : '#000'}
               />
-            <Text style={[styles.buttonText, this.state.pressOneStatus ? styles.buttonTextPress : {}]}>Sessions</Text>
+            <Text style={[styles.buttonText, this.props.activeView == 1 ? {color:'#00aced'} : {color:'#000'}]}>Active Sessions</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
             activeOpacity={1}
             onPress={this.props.action.bind(this,2)}
             style={[styles.button]}
-            underlayColor = {'#444'}
+            underlayColor = {'#ddd'}
             onHideUnderlay={this._onHideUnderlay.bind(this,2)}
             onShowUnderlay={this._onShowUnderlay.bind(this,2)}
           >
             <View>
               <Icon
-                name='ios-contacts-outline'
+                name={this.props.activeView == 2 ? 'ios-contacts' : 'ios-contacts-outline'}
                 type='ionicon'
-                color='#00aced'
+                color={this.props.activeView == 2 ? '#00aced' : '#000'}
               />
-            <Text style={[styles.buttonText,this.state.pressTwoStatus ? styles.buttonTextPress : {}]}>Friends</Text>
+            <Text style={[styles.buttonText,this.props.activeView == 2 ? {color:'#00aced'} : {color:'#000'}]}>Friends</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
             activeOpacity={1}
             onPress={this.props.action.bind(this,3)}
             style={[styles.button]}
-            underlayColor = {'#444'}
+            underlayColor = {'#ddd'}
             onHideUnderlay={this._onHideUnderlay.bind(this,3)}
             onShowUnderlay={this._onShowUnderlay.bind(this,3)}
           >
             <View>
               <Icon
-                name='ios-albums-outline'
+                name={this.props.activeView == 3 ? 'ios-albums' : 'ios-albums-outline'}
                 type='ionicon'
-                color='#00aced'
+                color={this.props.activeView == 3 ? '#00aced' : '#000'}
               />
-            <Text style={[styles.buttonText, this.state.pressThreeStatus ? styles.buttonTextPress : {}]}>History</Text>
+            <Text style={[styles.buttonText, this.props.activeView == 3 ? {color:'#00aced'} : {color:'#000'}]}>History</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -171,10 +170,6 @@ const styles = StyleSheet.create({
     backgroundColor:'#444'
   },
   buttonText:{
-    fontSize:10,
-    color:'#000'
-  },
-  buttonTextPress:{
-    color:'#fff'
+    fontSize:10
   }
 });
