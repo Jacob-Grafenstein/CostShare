@@ -8,11 +8,13 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import TopBar from './TopBar';
 import ActionBar from './ActionBar';
 import Profile from './Profile';
-import History from './History';
+import Settings from './Settings';
 import Session from './Session';
-import AddFriend from './AddFriend'
+import AddFriend from './AddFriend';
+import NewSession from './NewSession';
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +23,8 @@ export default class App extends Component {
     this.setView = this.setView.bind(this);
 
     this.state = {
-      viewId:0
+      viewId:0,
+      newSession:false
     }
   }
 
@@ -31,15 +34,36 @@ export default class App extends Component {
       viewId:2,
     });
   }
+
+  newSession(){
+    this.setState({
+      newSession:!this.state.newSession
+    });
+    console.log(this.state.newSession);
+  }
+
   setView(viewIdFromChild) {
     //console.log({this.props.viewId});
     this.setState({viewId:viewIdFromChild});
   }
 
   render() {
+    if (this.state.newSession) {
+      return(
+        <View style={styles.container}>
+          <TopBar action={this.newSession.bind(this)}/>
+          <NewSession />
+          <ActionBar
+            action={this.setView.bind(this)}
+            activeView={this.state.viewId}
+          />
+        </View>
+      )
+    }
     if (this.state.viewId == 0) {
       return(
         <View style={styles.container}>
+          <TopBar action={this.newSession.bind(this)}/>
           <Profile />
           <ActionBar
             action={this.setView.bind(this)}
@@ -51,6 +75,7 @@ export default class App extends Component {
     if (this.state.viewId == 1) {
       return(
         <View style={styles.container}>
+          <TopBar action={this.newSession.bind(this)}/>
           <Session />
           <ActionBar
             action={this.setView.bind(this)}
@@ -73,7 +98,7 @@ export default class App extends Component {
     if (this.state.viewId == 3) {
       return(
         <View style={styles.container}>
-          <History />
+          <Settings />
           <ActionBar
             action={this.setView.bind(this)}
             activeView={this.state.viewId}

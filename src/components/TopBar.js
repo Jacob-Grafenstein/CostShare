@@ -47,19 +47,18 @@ export default class TopBar extends Component {
         >
           <View style={styles.addNew}>
             <Icon
-              name='ios-add'
+              name='ios-add-circle-outline'
               type='ionicon'
               color={this.state.iconColor}
-              iconStyle={styles.ne}
             />
-            <Text style={[styles.buttonText]}>New Session</Text>
+            <Text style={[styles.buttonText]}>New</Text>
           </View>
         </TouchableHighlight>
         <View style={[styles.centerPiece]}>
           <Text style={[styles.buttonText]}>Split!</Text>
         </View>
         <View style={[styles.shittyLogo]}>
-          <Text style={[styles.buttonText]}>Sessions</Text>
+        
         </View>
       </View>
     );
@@ -67,9 +66,6 @@ export default class TopBar extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   button:{
     flex:1
   },
@@ -77,6 +73,7 @@ const styles = StyleSheet.create({
     flexDirection:'row-reverse',
     backgroundColor:'#00aced',
     alignItems:'center',
+    paddingTop:20,
   },
   addNew:{
     flexDirection:'row',

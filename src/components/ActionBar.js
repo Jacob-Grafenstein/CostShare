@@ -101,7 +101,7 @@ export default class ActionBar extends Component {
                 type='ionicon'
                 color={this.props.activeView == 1 ? '#00aced' : '#000'}
               />
-            <Text style={[styles.buttonText, this.props.activeView == 1 ? {color:'#00aced'} : {color:'#000'}]}>Active Sessions</Text>
+            <Text style={[styles.buttonText, this.props.activeView == 1 ? {color:'#00aced'} : {color:'#000'}]}>Sessions</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -131,11 +131,11 @@ export default class ActionBar extends Component {
           >
             <View>
               <Icon
-                name={this.props.activeView == 3 ? 'ios-albums' : 'ios-albums-outline'}
+                name={this.props.activeView == 3 ? 'ios-settings' : 'ios-settings-outline'}
                 type='ionicon'
                 color={this.props.activeView == 3 ? '#00aced' : '#000'}
               />
-            <Text style={[styles.buttonText, this.props.activeView == 3 ? {color:'#00aced'} : {color:'#000'}]}>History</Text>
+            <Text style={[styles.buttonText, this.props.activeView == 3 ? {color:'#00aced'} : {color:'#000'}]}>Settings</Text>
             </View>
           </TouchableHighlight>
         </View>
