@@ -1,0 +1,40 @@
+{
+  "activeSessions": [
+    {
+      "title":"Vacation in Europe",
+      "startDate":"12-07-2017",
+      "endDate":"12-14-2017",
+      "users":[
+        "Andriy",
+        "Nino",
+        "Graf"
+      ],
+      "description":"Went on vacation to Amsterdam, Nuremburg, and Berlin",
+      "total":"1207.34"
+    },
+    {
+      "title":"Out to Dinner",
+      "startDate":"12-01-2017",
+      "endDate":"12-01-2017",
+      "users":[
+        "Graf",
+        "Nancy"
+      ],
+      "description":"We went out to dinner at Seasons 52",
+      "total":"60.32"
+    },
+    {
+      "title":"November house expenses",
+      "startDate":"11-01-2017",
+      "endDate":"11-30-2017",
+      "users":[
+        "Andriy",
+        "Nino",
+        "Graf",
+        "Massman"
+      ],
+      "description":"House expenses",
+      "total":"3054.40"
+    }
+  ]
+}

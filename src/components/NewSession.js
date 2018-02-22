@@ -5,7 +5,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput
+  TextInput,
+  Animated
 } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
@@ -14,14 +15,36 @@ export default class NewSession extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fadeAnim: new Animated.Value(0),
       text:"",
       user:""
     }
   }
 
+  componentDidMount() {
+    Animated.timing(
+      this.state.fadeAnim,
+      {
+        toValue:1,
+        duration:1000,
+      }
+    ).start();
+  }
+
+  componentWillUnmount() {
+    Animated.timing(
+      this.state.fadeAnim,
+      {
+        toValue:0,
+        duration:1000,
+      }
+    ).start();
+  }
+
   render() {
+    let { fadeAnim } = this.state;
     return (
-      <View style={styles.mainViewport}>
+      <Animated.View style={[styles.mainViewport,{opacity:fadeAnim}]}>
         <Text style={styles.inputHeader}>Enter Session Title</Text>
         <TextInput
           multiline = {false}
@@ -35,20 +58,24 @@ export default class NewSession extends Component {
         <View style={styles.addUsers}>
           <Text style={styles.inputHeader}>Add Users</Text>
           <SearchBar
-            round
-            onChangeText={(text) => this.setState({user})}
+            lightTheme={true}
+            showLoading={true}
+            platform="ios"
+            onChangeText={(text) => this.setState({user:text})}
             onClearText={() => this.setState({user:null})}
-            placeholder='Type Here...'
+            placeholder='Search for users...'
+            cancelButtonTitle='Cancel'
+            inputStyle={styles.searchBar}
           />
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   inputHeader:{
-    fontSize:13
+    fontSize:15
   },
   textInput:{
     // flex:1,
@@ -67,4 +94,8 @@ const styles = StyleSheet.create({
   addUsers:{
     paddingTop:10
   },
+  searchBar:{
+    backgroundColor:'#fff',
+    fontSize:13
+  }
 });

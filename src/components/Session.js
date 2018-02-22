@@ -12,30 +12,65 @@ import {
 import { Icon } from 'react-native-elements';
 
 import TopBar from './TopBar';
+import ActiveList from './ActiveList';
+import PastList from './PastList';
 
 export default class Session extends Component {
   constructor(props){
     super(props);
     this.state = {
-      newSession:false,
-      text:""
+      isActive:true,
     }
   }
 
-  newSession(){
+  _showActiveSessions(){
     this.setState({
-      newSession:!this.state.isPressed
+      isActive:true
     });
-    console.log(this.state.newSession);
+    console.log("isActive=" + this.state.isActive);
+  }
+
+  _showPastSessions(){
+    this.setState({
+      isActive:false
+    });
+    console.log("isActive=" + this.state.isActive);
+  }
+
+  _onHideUnderlay() {
+
+  }
+
+  _onShowUnderlay() {
+
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.options}>
-          <Text style={styles.optionText}>Active Sessions</Text>
-          <Text style={styles.optionText}>Past Sessions</Text>
+          <TouchableHighlight
+            activeOpacity={1}
+            style={[styles.optionLink]}
+            underlayColor = {'#ddd'}
+            onPress={this._showActiveSessions.bind(this)}
+            onHideUnderlay={this._onHideUnderlay.bind(this,1)}
+            onShowUnderlay={this._onShowUnderlay.bind(this,1)}
+          >
+            <Text style={styles.optionText}>Active Sessions</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            activeOpacity={1}
+            style={[styles.optionLink]}
+            underlayColor = {'#ddd'}
+            onPress={this._showPastSessions.bind(this)}
+            onHideUnderlay={this._onHideUnderlay.bind(this,1)}
+            onShowUnderlay={this._onShowUnderlay.bind(this,1)}
+          >
+            <Text style={styles.optionText}>Past Sessions</Text>
+          </TouchableHighlight>
         </View>
+        { this.state.isActive ? <ActiveList /> : <PastList />}
       </View>
     )
   }
@@ -52,5 +87,8 @@ const styles = StyleSheet.create({
   },
   optionText:{
     fontSize:10
+  },
+  optionLink:{
+
   }
 });
