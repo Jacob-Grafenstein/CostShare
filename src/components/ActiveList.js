@@ -16,22 +16,29 @@ export default class ActiveList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeSession: []
+      activeSession: null
     }
+  }
+
+  viewSessionInfo(infoKey){
+    this.setState({
+      activeSession:infoKey
+    });
+    console.log(this.state.activeSession);
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.headerCells}>
-          <View style={{flex:3}}>
-            <Text>Session Title</Text>
+          <View style={[{flex:3}, styles.headerCell]}>
+            <Text style={styles.headerText}>Session Title</Text>
           </View>
-          <View style={{flex:2}}>
-            <Text>Start Date</Text>
+          <View style={[{flex:2}, styles.headerCell]}>
+            <Text style={styles.headerText}>Start Date</Text>
           </View>
-          <View style={{flex:2}}>
-            <Text>Total</Text>
+          <View style={[{flex:2}, styles.headerCell]}>
+            <Text style={styles.headerText}>Total</Text>
           </View>
           <View style={{flex:1}}>
           </View>
@@ -46,8 +53,11 @@ export default class ActiveList extends Component {
                 users = {item.users}
                 description = {item.description}
                 total = {item.total}
+                infoKey = {item.key}
+                key = {key}
                 isLast = { key === customData.activeSessions.length - 1 ? true : false }
-                />
+                onClick = {this.viewSessionInfo.bind(this)}
+              />
             ))
           }
         </ScrollView>
@@ -59,13 +69,21 @@ export default class ActiveList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:10,
+    paddingTop:20,
     paddingLeft:10,
     paddingRight:10
   },
   headerCells:{
     flexDirection:'row',
-    paddingRight:5,
+    backgroundColor:'#ccc',
+    height:20,
+    alignItems:'center'
+  },
+  headerCell:{
     paddingLeft:5,
+  },
+  headerText:{
+    fontSize:13,
+    fontWeight:'bold'
   }
 });

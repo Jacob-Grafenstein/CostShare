@@ -1,6 +1,7 @@
 {
   "activeSessions": [
     {
+      "key":1,
       "title":"Vacation in Europe",
       "startDate":"12-07-2017",
       "endDate":"12-14-2017",
@@ -13,6 +14,7 @@
       "total":"1207.34"
     },
     {
+      "key":2,
       "title":"Out to Dinner",
       "startDate":"12-01-2017",
       "endDate":"12-01-2017",
@@ -24,6 +26,7 @@
       "total":"60.32"
     },
     {
+      "key":3,
       "title":"November house expenses",
       "startDate":"11-01-2017",
       "endDate":"11-30-2017",

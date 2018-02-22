@@ -5,6 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 import { Icon } from 'react-native-elements';
@@ -16,6 +17,7 @@ export default class GridLayoutActiveSession extends Component {
 
     }
   }
+
   render() {
     let isLast = this.props.isLast;
     return (
@@ -30,11 +32,18 @@ export default class GridLayoutActiveSession extends Component {
           <Text style={styles.gridText}>${this.props.total}</Text>
         </View>
         <View style={[styles.sessionInfo, styles.gridItem]}>
-          <Icon
-            name='ios-information-circle-outline'
-            type='ionicon'
-            color='#000'
-          />
+          <TouchableHighlight
+            activeOpacity={1}
+            style={[styles.optionLink]}
+            underlayColor = {'#ddd'}
+            onPress={this.props.onClick.bind(this, this.props.infoKey)}
+          >
+            <Icon
+              name='ios-information-circle-outline'
+              type='ionicon'
+              color='#000'
+            />
+          </TouchableHighlight>
         </View>
         {/*<Text>{this.props.endDate}</Text>
         {
@@ -58,7 +67,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:40,
     backgroundColor:'#eee',
-    paddingRight:5,
     paddingLeft:5,
     borderBottomColor:'#ddd',
     borderBottomWidth:1,
@@ -85,7 +93,7 @@ const styles = StyleSheet.create({
   },
   sessionInfo:{
     flex:1,
-    alignItems:'center'
+    justifyContent:'center'
   },
   gridText:{
     fontSize:12
