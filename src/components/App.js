@@ -48,6 +48,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.ignoredYellowBox = ['Remote debugger'];
     if (this.state.newSession) {
       return(
         <View style={styles.container}>

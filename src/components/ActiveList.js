@@ -18,6 +18,7 @@ export default class ActiveList extends Component {
     this.state = {
       activeSession: null
     }
+    this.viewSessionInfo = this.viewSessionInfo.bind(this);
   }
 
   viewSessionInfo(infoKey){
@@ -25,6 +26,7 @@ export default class ActiveList extends Component {
       activeSession:infoKey
     });
     console.log(this.state.activeSession);
+    this.props.onInfoClick();
   }
 
   render() {

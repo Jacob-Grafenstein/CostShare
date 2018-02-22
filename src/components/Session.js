@@ -15,12 +15,23 @@ import TopBar from './TopBar';
 import ActiveList from './ActiveList';
 import PastList from './PastList';
 
+var customData = require('../lib/ActiveSessions.json');
+
 export default class Session extends Component {
   constructor(props){
     super(props);
     this.state = {
       isActive:true,
+      hideOptions:false
     }
+  }
+
+  toggleOptions(){
+    console.log("Toggle Options");
+    this.setState({
+      hideOptions:!this.state.hideOptions
+    });
+    console.log("hideOptions=" + this.state.hideOpions);
   }
 
   _showActiveSessions(){
@@ -48,29 +59,35 @@ export default class Session extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.options}>
-          <TouchableHighlight
-            activeOpacity={1}
-            style={[styles.optionLink]}
-            underlayColor = {'#ddd'}
-            onPress={this._showActiveSessions.bind(this)}
-            onHideUnderlay={this._onHideUnderlay.bind(this,1)}
-            onShowUnderlay={this._onShowUnderlay.bind(this,1)}
-          >
-            <Text style={styles.optionText}>Active Sessions</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            activeOpacity={1}
-            style={[styles.optionLink]}
-            underlayColor = {'#ddd'}
-            onPress={this._showPastSessions.bind(this)}
-            onHideUnderlay={this._onHideUnderlay.bind(this,1)}
-            onShowUnderlay={this._onShowUnderlay.bind(this,1)}
-          >
-            <Text style={styles.optionText}>Past Sessions</Text>
-          </TouchableHighlight>
-        </View>
-        { this.state.isActive ? <ActiveList /> : <PastList />}
+        { this.state.hideOpions ? <View></View> :
+          <View style={styles.options}>
+            <TouchableHighlight
+              activeOpacity={1}
+              style={[styles.optionLink]}
+              underlayColor = {'#ddd'}
+              onPress={this._showActiveSessions.bind(this)}
+              onHideUnderlay={this._onHideUnderlay.bind(this,1)}
+              onShowUnderlay={this._onShowUnderlay.bind(this,1)}
+            >
+              <Text style={styles.optionText}>Active Sessions</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              activeOpacity={1}
+              style={[styles.optionLink]}
+              underlayColor = {'#ddd'}
+              onPress={this._showPastSessions.bind(this)}
+              onHideUnderlay={this._onHideUnderlay.bind(this,1)}
+              onShowUnderlay={this._onShowUnderlay.bind(this,1)}
+            >
+              <Text style={styles.optionText}>Past Sessions</Text>
+            </TouchableHighlight>
+          </View>
+        }
+        { this.state.isActive ?
+          <ActiveList onInfoClick={this.toggleOptions.bind(this)} />
+          :
+          <PastList />
+        }
       </View>
     )
   }
