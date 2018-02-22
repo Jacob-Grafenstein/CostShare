@@ -28,6 +28,16 @@ export default class ActiveList extends Component {
   }
 
   render() {
+    var session = customData.activeSessions.find((session) => (
+      session.key === this.state.activeSession
+    ));
+    if (this.state.activeSession != null) {
+      return(
+        <View>
+          <Text>Hello</Text>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <View style={styles.headerCells}>
