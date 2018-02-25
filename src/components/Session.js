@@ -14,6 +14,7 @@ import { Icon } from 'react-native-elements';
 import TopBar from './TopBar';
 import ActiveList from './ActiveList';
 import PastList from './PastList';
+import BackButton from './BackButton';
 
 var customData = require('../lib/ActiveSessions.json');
 
@@ -21,31 +22,37 @@ export default class Session extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isActive:true,
-      hideOptions:false
+      showActiveList:true,
+      showPastList:false,
+      hideMenuOptions:false
     }
   }
 
-  toggleOptions(){
+  toggleMenuOptions(){
     console.log("Toggle Options");
     this.setState({
-      hideOptions:!this.state.hideOptions
+      hideMenuOptions:!this.state.hideMenuOptions
     });
-    console.log("hideOptions=" + this.state.hideOpions);
+    console.log("hideMenuOptions=" + this.state.hideMenuOptions);
   }
 
   _showActiveSessions(){
     this.setState({
-      isActive:true
+      showActiveList:true,
+      showPastList:false,
+      hideMenuOptions:false,
     });
-    console.log("isActive=" + this.state.isActive);
+    console.log("showActiveList=" + this.state.showActiveList);
+    console.log("hideMenuOptions=" + this.state.hideMenuOptions);
   }
 
   _showPastSessions(){
     this.setState({
-      isActive:false
+      showActiveList:false,
+      showPastList:true,
+      hideMenuOptions:false,
     });
-    console.log("isActive=" + this.state.isActive);
+    console.log("showActiveList=" + this.state.showActiveList);
   }
 
   _onHideUnderlay() {
@@ -59,7 +66,9 @@ export default class Session extends Component {
   render() {
     return (
       <View style={styles.container}>
-        { this.state.hideOpions ? <View></View> :
+        { this.state.hideMenuOptions ?
+          <View></View>
+          :
           <View style={styles.options}>
             <TouchableHighlight
               activeOpacity={1}
@@ -83,8 +92,11 @@ export default class Session extends Component {
             </TouchableHighlight>
           </View>
         }
-        { this.state.isActive ?
-          <ActiveList onInfoClick={this.toggleOptions.bind(this)} />
+        { this.state.showActiveList ?
+          <ActiveList
+            onInfoClick={this.toggleMenuOptions.bind(this)}
+            showActiveList = {this.state.showActiveList}
+          />
           :
           <PastList />
         }

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import GridLayoutActiveSession from './GridLayoutActiveSession';
+import BackButton from './BackButton';
 
 var customData = require('../lib/ActiveSessions.json');
 
@@ -25,7 +26,14 @@ export default class ActiveList extends Component {
     this.setState({
       activeSession:infoKey
     });
-    console.log(this.state.activeSession);
+    //console.log(this.state.activeSession);
+    this.props.onInfoClick();
+  }
+
+  hideSessionInfo(){
+    this.setState({
+      activeSession:null
+    });
     this.props.onInfoClick();
   }
 
@@ -36,7 +44,10 @@ export default class ActiveList extends Component {
     if (this.state.activeSession != null) {
       return(
         <View>
-          <Text>Hello</Text>
+          <BackButton
+            backButtonText={'< Active Sessions'}
+            action={this.hideSessionInfo.bind(this)}
+          />
         </View>
       )
     }
