@@ -82,14 +82,18 @@ const styles = StyleSheet.create({
   sessionStartDate:{
     flex:2,
     paddingLeft:5,
+    paddingRight:5,
     borderRightWidth:1,
     borderRightColor:'#ddd',
+    alignItems:'flex-end',
   },
   sessionTotal:{
     flex:2,
     paddingLeft:5,
+    paddingRight:5,
     borderRightWidth:1,
     borderRightColor:'#ddd',
+    alignItems:'flex-end'
   },
   sessionInfo:{
     flex:1,

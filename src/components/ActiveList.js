@@ -46,6 +46,7 @@ export default class ActiveList extends Component {
       return(
         <ActiveSession
           onBackButtonClick={this.hideSessionInfo.bind(this)}
+          activeSession={session}
         />
       )
     }
@@ -56,10 +57,10 @@ export default class ActiveList extends Component {
             <Text style={styles.headerText}>Session Title</Text>
           </View>
           <View style={[{flex:2}, styles.headerCell]}>
-            <Text style={styles.headerText}>Start Date</Text>
+            <Text style={[styles.headerText, {alignSelf:'flex-end'}]}>Start Date</Text>
           </View>
           <View style={[{flex:2}, styles.headerCell]}>
-            <Text style={styles.headerText}>Total</Text>
+            <Text style={[styles.headerText, {alignSelf:'flex-end'}]}>Total</Text>
           </View>
           <View style={{flex:1}}>
           </View>
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
   },
   headerCell:{
     paddingLeft:5,
+    paddingRight:5,
   },
   headerText:{
     fontSize:13,

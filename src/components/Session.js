@@ -64,6 +64,8 @@ export default class Session extends Component {
   }
 
   render() {
+    // let {showActiveList} = this.state.showActiveList;
+    // let {showPastList} = this.state.showPastList;
     return (
       <View style={styles.container}>
         { this.state.hideMenuOptions ?
@@ -78,7 +80,7 @@ export default class Session extends Component {
               onHideUnderlay={this._onHideUnderlay.bind(this,1)}
               onShowUnderlay={this._onShowUnderlay.bind(this,1)}
             >
-              <Text style={styles.optionText}>Active Sessions</Text>
+              <Text style={[styles.optionText, this.state.showActiveList ? styles.activeOption : {}]}>Active Sessions</Text>
             </TouchableHighlight>
             <TouchableHighlight
               activeOpacity={1}
@@ -88,7 +90,7 @@ export default class Session extends Component {
               onHideUnderlay={this._onHideUnderlay.bind(this,1)}
               onShowUnderlay={this._onShowUnderlay.bind(this,1)}
             >
-              <Text style={styles.optionText}>Past Sessions</Text>
+              <Text style={[styles.optionText,  this.state.showPastList ? styles.activeOption : {}]}>Past Sessions</Text>
             </TouchableHighlight>
           </View>
         }
@@ -119,5 +121,10 @@ const styles = StyleSheet.create({
   },
   optionLink:{
 
+  },
+  activeOption:{
+    color:'#00aced',
+    textDecorationLine:'underline',
+    fontWeight:'bold',
   }
 });

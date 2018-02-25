@@ -11,6 +11,9 @@ import BackButton from './BackButton';
 import SessionInfo from './SessionInfo';
 
 export default class ActiveSession extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -18,7 +21,9 @@ export default class ActiveSession extends Component {
           backButtonText={'< Active Sessions'}
           action={this.props.onBackButtonClick}
         />
-        <Text>Im the ActiveSession component</Text>
+        <SessionInfo
+          sessionInfo={this.props.activeSession}
+        />
       </View>
     );
   }
