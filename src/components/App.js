@@ -88,6 +88,7 @@ export default class App extends Component {
     if (this.state.viewId == 2) {
       return(
         <View style={styles.container}>
+          <TopBar action={this.newSession.bind(this)}/>
           <AddFriend />
           <ActionBar
             action={this.setView.bind(this)}
@@ -99,6 +100,7 @@ export default class App extends Component {
     if (this.state.viewId == 3) {
       return(
         <View style={styles.container}>
+          <TopBar action={this.newSession.bind(this)}/>
           <Settings />
           <ActionBar
             action={this.setView.bind(this)}
