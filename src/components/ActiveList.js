@@ -10,6 +10,7 @@ import {
 
 import GridLayoutActiveSession from './GridLayoutActiveSession';
 import BackButton from './BackButton';
+import ActiveSession from './ActiveSession';
 
 var customData = require('../lib/ActiveSessions.json');
 
@@ -43,12 +44,9 @@ export default class ActiveList extends Component {
     ));
     if (this.state.activeSession != null) {
       return(
-        <View>
-          <BackButton
-            backButtonText={'< Active Sessions'}
-            action={this.hideSessionInfo.bind(this)}
-          />
-        </View>
+        <ActiveSession
+          onBackButtonClick={this.hideSessionInfo.bind(this)}
+        />
       )
     }
     return (
