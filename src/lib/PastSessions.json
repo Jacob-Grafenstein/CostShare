@@ -1,0 +1,43 @@
+{
+  "activeSessions": [
+    {
+      "key":1,
+      "title":"August house expenses",
+      "startDate":"08-01-2017",
+      "endDate":"08-31-2017",
+      "users":[
+        "Andriy",
+        "Nino",
+        "Graf"
+      ],
+      "description":"House expenses for the month of August. does not include rent.",
+      "total":"2300.87"
+    },
+    {
+      "key":2,
+      "title":"Out to Dinner",
+      "startDate":"12-01-2017",
+      "endDate":"12-01-2017",
+      "users":[
+        "Graf",
+        "Nancy"
+      ],
+      "description":"We went out to dinner at Seasons 52",
+      "total":"60.32"
+    },
+    {
+      "key":3,
+      "title":"November house expenses",
+      "startDate":"11-01-2017",
+      "endDate":"11-30-2017",
+      "users":[
+        "Andriy",
+        "Nino",
+        "Graf",
+        "Massman"
+      ],
+      "description":"House expenses",
+      "total":"3054.40"
+    }
+  ]
+}
