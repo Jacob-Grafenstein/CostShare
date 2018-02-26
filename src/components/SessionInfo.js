@@ -7,9 +7,24 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import { compareSessionDetails } from '../helpers/globalFunctions.js';
+
 export default class SessionInfo extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      isEdited: false,
+      sessionDetails:this.props.sessionInfo
+    }
+  }
+
+  saveSessionDetails(){
+    var isEqual = compareSessionDetails(this.state.sessionDetails, this.props.sessionInfo);
+    if (isEqual) {
+      console.log("Needs saving");
+      return;
+    }
+    console.log("Doesn't need saving");
   }
 
   render() {
