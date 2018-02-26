@@ -75,7 +75,7 @@ export default class Session extends Component {
             <TouchableHighlight
               activeOpacity={1}
               style={[styles.optionLink]}
-              underlayColor = {'#ddd'}
+              underlayColor = {'#fff'}
               onPress={this._showActiveSessions.bind(this)}
               onHideUnderlay={this._onHideUnderlay.bind(this,1)}
               onShowUnderlay={this._onShowUnderlay.bind(this,1)}
@@ -85,7 +85,7 @@ export default class Session extends Component {
             <TouchableHighlight
               activeOpacity={1}
               style={[styles.optionLink]}
-              underlayColor = {'#ddd'}
+              underlayColor = {'#fff'}
               onPress={this._showPastSessions.bind(this)}
               onHideUnderlay={this._onHideUnderlay.bind(this,1)}
               onShowUnderlay={this._onShowUnderlay.bind(this,1)}

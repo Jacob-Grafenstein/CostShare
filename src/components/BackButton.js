@@ -17,10 +17,10 @@ export default class BackButton extends Component {
         <TouchableHighlight
           activeOpacity={1}
           style={[styles.backButtonHighlight]}
-          underlayColor = {'#ddd'}
+          underlayColor = {'#fff'}
           onPress={this.props.action.bind(this)}
         >
-          <Text style={styles.backButtonText} >{this.props.backButtonText}</Text>
+          <Text style={styles.backButtonText}>{this.props.backButtonText}</Text>
         </TouchableHighlight>
       </View>
     );
@@ -29,7 +29,7 @@ export default class BackButton extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
   },
   backButtonText:{
     fontSize:11

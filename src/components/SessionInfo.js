@@ -13,6 +13,13 @@ export default class SessionInfo extends Component {
   }
 
   render() {
+    if (this.props.isEditable) {
+      return(
+        <View>
+          <Text>Hi Mom</Text>
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -43,7 +50,7 @@ export default class SessionInfo extends Component {
           <Text style={styles.headerText}>Total</Text>
         </View>
         <View style={styles.sessionInfo}>
-          <Text style={styles.sessionInfoText}>{this.props.sessionInfo.total}</Text>
+          <Text style={styles.sessionInfoText}>${this.props.sessionInfo.total}</Text>
         </View>
       </View>
     );
